@@ -26,6 +26,6 @@ urlpatterns = [
 ]
 
 router = routers.SimpleRouter()
-router.register('post' , Postview)
+router.register('post' , Postview ,basename="post")
 
 urlpatterns+= router.urls

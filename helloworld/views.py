@@ -8,12 +8,17 @@ from helloworld.models import Post
 from rest_framework.permissions import IsAuthenticated
 from helloworld.permissions import IsPostPossessor
 
+
 class HelloWorldView(APIView):
 
-    def get(self,request):
-        return Response({'message':'Hello World'})
+    def get(self, request):
+        return Response({'message': 'Hello World'})
+
 
 class Postview(ModelViewSet):
     permission_classes = [IsAuthenticated, IsPostPossessor]
-    queryset = Post.objects.all()
+    # queryset = Post.objects.all()
     serializer_class = PostSerializer
+
+    def get_queryset(self):
+        return Post.objects.filter(created_by=self.request.user)
