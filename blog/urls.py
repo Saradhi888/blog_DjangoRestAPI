@@ -21,11 +21,11 @@ from helloworld.views import Postview
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hello', HelloWorldView.as_view()),
+    path('hello' , HelloWorldView.as_view()),
     path('api-auth/', include('rest_framework.urls')),
 ]
 
 router = routers.SimpleRouter()
-router.register('post', Postview)
+router.register('post' , Postview)
 
 urlpatterns+= router.urls
