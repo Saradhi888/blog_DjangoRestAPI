@@ -2,9 +2,10 @@ from django.shortcuts import render
 from rest_framework.response import Response
 # Create your views here.
 from rest_framework.decorators import APIView
-from .serilizers import PostSerializer
+from helloworld.serilizers import PostSerializer
 from rest_framework.viewsets import ModelViewSet
 from helloworld.models import Post
+from rest_framework.permissions import IsAuthenticated
 
 class HelloWorldView(APIView):
 
@@ -12,5 +13,6 @@ class HelloWorldView(APIView):
         return Response({'message':'Hello World'})
 
 class Postview(ModelViewSet):
+    permission_classes = [IsAuthenticated]
     queryset = Post.objects.all()
     serializer_class = PostSerializer
